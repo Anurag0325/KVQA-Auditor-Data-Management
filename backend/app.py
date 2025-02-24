@@ -46,10 +46,10 @@ SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
 
 def insert_dummy_data():
     users_data = [
-        {"email": "tech@kvqaindia.com",
-         "username": "tech@kvqaindia", "password": "asdfgh"},
-        {"email": "akanuragkumar4@gmail.com",
-         "username": "anuragkumar", "password": "qwerty"}
+        # {"email": "tech@kvqaindia.com",
+        #  "username": "tech@kvqaindia", "password": "asdfgh"},
+        # {"email": "akanuragkumar4@gmail.com",
+        #  "username": "anuragkumar", "password": "qwerty"},
         {"email": "lav@kvqaindia.com",
             "username": "lav@kvqaindia", "password": "Noida#123"},
         {"email": "dinesh@kvqaindia.com",
