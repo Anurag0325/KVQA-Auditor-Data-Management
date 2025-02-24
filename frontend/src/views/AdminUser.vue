@@ -76,7 +76,8 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/admin/users");
+        // const response = await axios.get("http://127.0.0.1:5000/admin/users");
+        const response = await axios.get("https://kvqa-auditor-data-management.onrender.com/admin/users");
         this.users = response.data.users;
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -95,7 +96,8 @@ export default {
         if (!confirm("Are you sure you want to delete this user?")) return;
 
         try {
-            await axios.delete(`http://127.0.0.1:5000/admin/users/${userId}`);
+            // await axios.delete(`http://127.0.0.1:5000/admin/users/${userId}`);
+            await axios.delete(`https://kvqa-auditor-data-management.onrender.com/admin/users/${userId}`);
             this.users = this.users.filter(user => user.id !== userId);
             alert("User deleted successfully!");
         } catch (error) {

@@ -108,7 +108,8 @@
             throw new Error("No authentication token found. Please log in again.");
           }
   
-          const response = await axios.get("http://127.0.0.1:5000/admin/applications", {
+          // const response = await axios.get("http://127.0.0.1:5000/admin/applications", {
+          const response = await axios.get("https://kvqa-auditor-data-management.onrender.com/admin/applications", {
             headers: { Authorization: `Bearer ${token}` },
           });
   
@@ -123,7 +124,8 @@
       async approveApplication(id) {
         try {
           const token = localStorage.getItem("token");
-          await axios.put(`http://127.0.0.1:5000/admin/applications/${id}/approve`, {}, {
+          // await axios.put(`http://127.0.0.1:5000/admin/applications/${id}/approve`, {}, {
+          await axios.put(`https://kvqa-auditor-data-management.onrender.com/admin/applications/${id}/approve`, {}, {
             headers: { Authorization: `Bearer ${token}` },
           });
   
@@ -138,7 +140,7 @@
       async rejectApplication(id) {
         try {
           const token = localStorage.getItem("token");
-          await axios.put(`http://127.0.0.1:5000/admin/applications/${id}/reject`, {}, {
+          await axios.put(`https://kvqa-auditor-data-management.onrender.com/admin/applications/${id}/reject`, {}, {
             headers: { Authorization: `Bearer ${token}` },
           });
   
@@ -153,7 +155,7 @@
       async deleteApplication(id) {
         try {
           const token = localStorage.getItem("token");
-          await axios.delete(`http://127.0.0.1:5000/admin/applications/${id}`, {
+          await axios.delete(`https://kvqa-auditor-data-management.onrender.com/admin/applications/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
   
@@ -169,7 +171,7 @@
         try {
           const token = localStorage.getItem("token");
   
-          const response = await axios.get("http://127.0.0.1:5000/admin/search", {
+          const response = await axios.get("https://kvqa-auditor-data-management.onrender.com/admin/search", {
             headers: { Authorization: `Bearer ${token}` },
             params: {
               org_name: this.organisationName.trim(),

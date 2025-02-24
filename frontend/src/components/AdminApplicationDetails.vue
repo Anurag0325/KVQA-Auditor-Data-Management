@@ -198,7 +198,8 @@
 
       async fetchAdminApplication() {
   try {
-    const response = await axios.get(`http://127.0.0.1:5000/admin/application/${this.organisation_name}`);
+    // const response = await axios.get(`http://127.0.0.1:5000/admin/application/${this.organisation_name}`);
+    const response = await axios.get(`https://kvqa-auditor-data-management.onrender.com//admin/application/${this.organisation_name}`);
     console.log(response.data);
 
     if (response.data?.applications?.length > 0) {
@@ -224,8 +225,8 @@
             }
     
             const cleanFilename = filename.replace(/^uploads\//, "");
-            const response = await axios.get(`http://127.0.0.1:5000/admin/download/${encodeURIComponent(cleanFilename)}`, {
-            // const response = await axios.get(`https://kvqa-data-management-application.onrender.com/download/${encodeURIComponent(cleanFilename)}`, {
+            // const response = await axios.get(`http://127.0.0.1:5000/admin/download/${encodeURIComponent(cleanFilename)}`, {
+            const response = await axios.get(`https://kvqa-auditor-data-management.onrender.com/download/${encodeURIComponent(cleanFilename)}`, {
               headers: { Authorization: `Bearer ${token}` },
               responseType: "blob",
             });

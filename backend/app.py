@@ -11,7 +11,6 @@ from email import encoders
 from email.message import EmailMessage
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
-import psycopg2
 
 
 load_dotenv()

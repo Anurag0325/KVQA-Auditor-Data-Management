@@ -256,8 +256,8 @@
     let token = localStorage.getItem("token");
 
     try {
-        const response = await axios.post("http://127.0.0.1:5000/stage2", formData, {
-        // const response = await axios.post("https://kvqa-data-management-application.onrender.com/stage2", formData, {
+        // const response = await axios.post("http://127.0.0.1:5000/stage2", formData, {
+        const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/stage2", formData, {
             headers: { 
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${token}`
@@ -277,8 +277,8 @@
 
             // Retry request with new token
             try {
-                const response = await axios.post("http://127.0.0.1:5000/stage2", formData, {
-                // const response = await axios.post("https://kvqa-data-management-application.onrender.com/stage2", formData, {
+                // const response = await axios.post("http://127.0.0.1:5000/stage2", formData, {
+                const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/stage2", formData, {
                     headers: { 
                         "Content-Type": "multipart/form-data",
                         "Authorization": `Bearer ${newToken}`
@@ -331,8 +331,8 @@
             emailData.append("attachments", this.additionaldata);
 
             try {
-                const response = await axios.post("http://127.0.0.1:5000/send-email", emailData, {
-                // const response = await axios.post("https://kvqa-data-management-application.onrender.com/send-email", emailData, {
+                // const response = await axios.post("http://127.0.0.1:5000/send-email", emailData, {
+                const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/send-email", emailData, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
 
@@ -358,8 +358,8 @@
     reportEmailData.append("attachments", this.stage2Report);
 
     try {
-        const response = await axios.post("http://127.0.0.1:5000/send-email", reportEmailData, {
-        // const response = await axios.post("https://kvqa-data-management-application.onrender.com/send-email", reportEmailData, {
+        // const response = await axios.post("http://127.0.0.1:5000/send-email", reportEmailData, {
+        const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/send-email", reportEmailData, {
             headers: { "Content-Type": "multipart/form-data" },
         });
 
@@ -379,8 +379,8 @@ async refreshToken() {
             return null;
         }
 
-        const response = await axios.post("http://127.0.0.1:5000/refresh", {
-        // const response = await axios.post("https://kvqa-data-management-application.onrender.com/refresh", {
+        // const response = await axios.post("http://127.0.0.1:5000/refresh", {
+        const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/refresh", {
             refresh_token: refreshToken,
         });
 
