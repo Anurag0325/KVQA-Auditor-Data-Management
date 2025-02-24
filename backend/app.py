@@ -157,6 +157,11 @@ def insert_dummy_data():
         db.session.commit()
 
 
+with app.app_context():
+    db.create_all()
+    insert_dummy_data()
+
+
 @app.route('/')
 def home():
     return "App Started!"
@@ -1723,7 +1728,4 @@ def decision_get_application_details(organisation_name):
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        insert_dummy_data()
-        app.run(debug="True")
+    app.run(debug="True")
