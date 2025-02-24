@@ -19,9 +19,12 @@ app = Flask(__name__)
 CORS(app)
 
 DATABASE_URL = os.getenv('DATABASE_URL')
+if not DATABASE_URL:
+    raise ValueError(
+        "❌ DATABASE_URL is missing. Check your environment variables!")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    'DATABASE_URL')  # Use full URL from Render
+# Use full URL from Render
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.sqlite3"
@@ -43,10 +46,10 @@ SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
 
 def insert_dummy_data():
     users_data = [
-        # {"email": "tech@kvqaindia.com",
-        #  "username": "tech@kvqaindia", "password": "asdfgh"},
-        # {"email": "akanuragkumar4@gmail.com",
-        #  "username": "anuragkumar", "password": "qwerty"}
+        {"email": "tech@kvqaindia.com",
+         "username": "tech@kvqaindia", "password": "asdfgh"},
+        {"email": "akanuragkumar4@gmail.com",
+         "username": "anuragkumar", "password": "qwerty"}
         {"email": "lav@kvqaindia.com",
             "username": "lav@kvqaindia", "password": "Noida#123"},
         {"email": "dinesh@kvqaindia.com",
