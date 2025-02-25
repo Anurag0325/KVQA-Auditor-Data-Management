@@ -278,7 +278,7 @@
     });
 
     console.log("API Response:", response.data); // ✅ Debugging
-    this.applications = response.data;
+    this.applications = response.data.applications;
   } catch (error) {
     console.error("Error fetching applications:", error);
     alert("Failed to fetch applications. Please log in again.");

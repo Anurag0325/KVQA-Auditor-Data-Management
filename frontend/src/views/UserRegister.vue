@@ -77,7 +77,8 @@
         }
   
         try {
-          const response = await axios.post("http://127.0.0.1:5000/admin/register_user", {
+          // const response = await axios.post("http://127.0.0.1:5000/admin/register_user", {
+          const response = await axios.post("https://kvqa-auditor-data-management.onrender.com/admin/register_user", {
             email: this.email,
             username: this.username,
             password: this.password

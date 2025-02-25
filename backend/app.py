@@ -492,7 +492,7 @@ def get_dashboard_data():
 
     # Filter applications where the user is a decision maker
     applications = Dashboard.query.filter(
-        Dashboard.decision_maker.like(f"%({current_user_email})%")).all()
+        Dashboard.auditor.like(f"%({current_user_email})%")).all()
 
     # Convert query results to JSON
     applications_list = [
