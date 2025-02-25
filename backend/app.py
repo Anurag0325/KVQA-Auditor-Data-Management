@@ -463,25 +463,51 @@ def dashboard_data():
 #     except Exception as e:
 #         return jsonify({"error": str(e)}), 500
 
+# @app.route('/dashboard', methods=['GET'])
+# @jwt_required()
+# def get_dashboard_data():
+#     try:
+#         current_user_email = get_jwt_identity()
+#         print("Decoded JWT Identity:", current_user_email)  # ✅ Debugging
+
+#         user = User.query.filter_by(email=current_user_email).first()
+
+#         if not user:
+#             return jsonify({"error": "User not found"}), 404
+
+#         applications = Dashboard.query.filter_by(user_id=user.id).all()
+#         data = [{"id": app.id, "org_name": app.org_name, "audit_number": app.audit_number, "status": app.status,
+#                  "auditor": app.auditor, "decision_maker": app.decision_maker} for app in applications]
+
+#         return jsonify(data), 200
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
+
 @app.route('/dashboard', methods=['GET'])
 @jwt_required()
 def get_dashboard_data():
-    try:
-        current_user_email = get_jwt_identity()
-        print("Decoded JWT Identity:", current_user_email)  # ✅ Debugging
+    current_user_email = get_jwt_identity()  # Get logged-in user's email
 
-        user = User.query.filter_by(email=current_user_email).first()
+    user = User.query.filter_by(email=current_user_email).first()
 
-        if not user:
-            return jsonify({"error": "User not found"}), 404
+    # Filter applications where the user is a decision maker
+    applications = Dashboard.query.filter(
+        Dashboard.decision_maker.like(f"%({current_user_email})%")).all()
 
-        applications = Dashboard.query.filter_by(user_id=user.id).all()
-        data = [{"id": app.id, "org_name": app.org_name, "audit_number": app.audit_number, "status": app.status,
-                 "auditor": app.auditor, "decision_maker": app.decision_maker} for app in applications]
+    # Convert query results to JSON
+    applications_list = [
+        {
+            "id": app.id,
+            "org_name": app.org_name,
+            "audit_number": app.audit_number,
+            "auditor": app.auditor,
+            "decision_maker": app.decision_maker,
+            "status": app.status
+        }
+        for app in applications
+    ]
 
-        return jsonify(data), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    return jsonify({"applications": applications_list}), 200
 
 
 # @app.route('/dashboard/<int:id>', methods=['DELETE'])
